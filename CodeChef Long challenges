@@ -1,0 +1,102 @@
+https://www.codechef.com/JAN21B/problems/WIPL
+Sol: 
+#include<bits/stdc++.h>
+using namespace std;
+#define ll long long
+
+ 
+#define mp                make_pair
+#define pb                push_back
+#define ppb               pop_back
+#define pf                push_front
+#define ppf               pop_front
+#define all(x)            (x).rbegin(),(x).rend()
+#define uniq(v)           (v).erase(unique(all(v)),(v).end())
+#define sz(x)             (ll)((x).size())
+#define fr                first
+#define sc                second
+#define pii               pair<ll,ll>
+#define vi                vector<ll> 
+#define vvi               vector<vector<ll>> 
+#define vp                vector<pair<ll,ll>> 
+#define rep(i,a,b)        for(ll i=a;i<b;i++)
+#define repr(i,a,b)       for(ll i=b-1;i>=a;i--)
+#define mem1(a)           memset(a,-1,sizeof(a))
+#define mem0(a)           memset(a,0,sizeof(a))
+#define ppc               __builtin_popcount
+#define ppcll             __builtin_popcountll
+ 
+
+#define fio ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
+
+vector<ll> sss(vector<int> &h,int n,int sum)
+{
+				int subset[n+1][sum+1];
+				vector<ll> vec;
+				for(int i=0;i<=n;i++)
+				{
+					for(int j=0;j<=sum;j++)
+					{
+						if(i==0) subset[i][j]=false;
+						if(j==0) subset[i][j]=true;
+						
+					}
+				}
+
+	        	for(int i=1;i<=n;i++)
+				{	
+					for(ll j=1;j<=sum;j++)
+					{
+						if(h[i-1]<=j)	subset[i][j]=(subset[i-1][j-h[i-1]]) || subset[i-1][j];
+						else subset[i][j]=subset[i-1][j];
+					}
+				}
+				for(int i=1;i<=sum;i++)
+				{
+					if(subset[n][i]==true) vec.pb(i);
+				}
+				return vec;
+}
+
+int main()
+{
+	fio
+	int t,n;
+	cin>>t;
+	while(t--)
+	{
+	    int  k;
+		cin>>n>>k;
+		vector<int> h(n);
+		for(int i=0;i<n;i++)
+		{
+			cin>>h[i];
+		}
+		sort(all(h));
+		int sum = 0;
+		int ans = -1;
+	
+		for(int i=1;i<=n;i++)
+		{
+			sum += h[i-1];
+			if(sum >= 2*k)
+			{
+				vector<ll> vv=sss(h,i,sum);
+				int a=0;int b=0;
+				for(int hh=0;hh<vv.size();hh++) 
+				{
+					ll t1=sum-vv[hh];
+					ll t2=vv[hh];
+					if(t1>=k && t2>=k) {a=t1,b=t2; break;}
+					
+				}
+				
+				if(a>=k && b>=k) {ans=i; break;}
+				
+				}
+			
+		}
+		
+		cout<<ans<<endl;
+	}
+}
