@@ -1,0 +1,25 @@
+Problem:
+
+Given an Array of integers, Find the smallest Lexical subsequence with size k. 
+EX: Array : [3,1,5,3,5,9,2] k =4
+Expected Soultion : 1 3 5 2
+
+
+Explanation:
+The problem can be solved in O(n) by maintaining a double ended queue(deque). We iterate the element from left to right and ensure that the deque always holds the smallest lexicographic sequence upto that point. We should only pop off element if the current element is smaller than the elements in deque and the total elements in deque plus remaining to be processed are at least k.
+
+vector<int> smallestLexo(vector<int> s, int k) {
+    deque<int> dq;
+    for(int i = 0; i < s.size(); i++) {
+        while(!dq.empty() && s[i] < dq.back() && (dq.size() + (s.size() - i - 1)) >= k) {
+            dq.pop_back();
+        }
+        dq.push_back(s[i]);
+    }
+		
+		while(dq.size() > k)
+		{
+					 dq.pop_back();
+		}
+    return vector<int> (dq.begin(), dq.end());
+}
