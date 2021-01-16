@@ -1,2 +1,2 @@
 # Competitve_programming
-Will Contain all the coding problems which I have done in contests and pratice
+This Repository is purely for coding problems and it includes the coding problems which I will be doing in contests and pratice
