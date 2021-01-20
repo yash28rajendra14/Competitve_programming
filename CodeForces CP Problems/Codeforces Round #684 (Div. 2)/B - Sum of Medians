@@ -16,6 +16,76 @@ main()
 		cout<<s<<endl;
 	}
 }
+////////////////////////////////
+
+
+
+/*
+    Author: @talrejamohit99
+    Mohit Talreja, NITW
+*/
+#include <bits/stdc++.h>
+#define MOD 1000000007
+#define ll long long int
+#define flash ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL)
+#define dexter cout.setf(ios::fixed); cout.setf(ios::showpoint); cout.precision(10)
+using namespace std;
+ 
+ll MPOW(ll x , ll y){
+    if(y == 0) return (ll)1;
+    ll ret = MPOW(x , y/2);
+    ret *= ret; ret %= MOD;
+    if(y&1) ret *= x;
+    return ret % MOD;
+}
+ll inv(ll x){
+    return MPOW(x , MOD - 2);
+}
+/*
+vector<ll> fact(1e6);
+ 
+void fillFact(){
+	fact[0]=1;
+	for(ll i=1;i<1e6;i++){
+		fact[i] = (fact[i-1] * i)%MOD;
+	}
+}
+ll nCr(ll n, ll r){
+	if(r==0)
+		return 1LL;
+	return (((fact[n]*inv(fact[r]))%MOD) * inv(fact[n-r]))%MOD;
+}
+*/
+int main(){
+    dexter;
+    flash;
+    int t;
+    cin>>t;
+    while(t-->0){
+		int n,k;
+		cin>>n>>k;
+		vector<ll> a(n*k);
+		for(int i=0;i<(n*k);i++)
+			cin>>a[i];
+		int st=n/2,i=(n*k)-st-1;
+		ll ans=0,c=0;
+		while(c<k){
+			c++;
+			ans+=a[i];
+			//cout<<a[i]<<" ";
+			i-=(st+1);
+		}
+		cout<<ans<<"\n";
+    }
+    return 0;
+}
+
+
+
+
+
+
+
 
 ////////////////////////////////
 
