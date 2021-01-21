@@ -1,0 +1,112 @@
+https://atcoder.jp/contests/abc184/tasks/abc184_b:
+
+
+#include<bits/stdc++.h>
+using namespace std;
+
+typedef long long int ll;
+typedef pair<int,int> pii;
+typedef pair<ll,ll> pll;
+typedef vector<int> vi;
+typedef vector<vi> vvi;
+typedef vector<ll> vl;
+typedef vector<pii> vii;
+typedef unordered_map<int,int> umii;
+typedef unordered_map<ll,ll> umll;
+
+#define fastio ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
+#define bs(v,val) binary_search(v.begin(),v.end(),val)
+#define mod 1e9+7
+#define ff first
+#define ss second
+#define fi(n) for(int i=0;i<n;i++)
+#define fj(n) for(int j=0;j<n;j++)
+#define f(i,a,b) for(int i=a;i<b;i++)
+#define all(v) v.rbegin(),v.rend()
+#define alll(v) v.begin(),v.end()
+#define pb push_back
+#define m_p make_pair
+#define endl '\n'
+
+ll power(ll x, ll y, ll p)
+{  
+    ll res = 1;
+    x = x % p;  
+    if (x == 0) return 0;
+    while (y > 0){  
+        if (y & 1)  res = (res*x) % p;  
+        y = y>>1;
+        x = (x*x) % p;  
+    }  
+    return res;  
+}
+ll modInverse(ll n, ll p)
+{
+    return power(n, p-2, p); 
+}
+// ********** CODE STARTS HERE ****************//
+
+// int LCS(string s,string t)
+// {
+// 	int n=s.size(),m=t.size();
+// 	int dp[n+1][m+1];
+// 	for(int i=0;i<=n;i++)
+// 	{
+// 		for(int j=0;j<=m;j++)
+// 		{
+// 			if(i==0 || j==0) dp[i][j]=0;
+// 		}
+// 	}
+// 	for(int i=1;i<=n;i++)
+// 	{
+// 		for(int j=1;j<=m;j++)
+// 		{
+// 			if(s[i-1]==t[j-1]) dp[i][j]=dp[i-1][j-1]+1;
+// 			else dp[i][j]=0;
+// 		}
+// 	}
+// 	int mn=INT_MIN;
+// 	for(int i=0;i<=n;i++)
+// 	{
+// 		for(int j=0;j<=m;j++)
+// 		{
+// 			mn=max(mn,dp[i][j]);
+// 		}
+// 	}
+// 	if(mn==min(n,m)) return min(n,m);
+// 	else return 0;
+// }
+void solve()
+{
+
+	int n,x;
+	cin>>n>>x;
+	string s;
+	cin>>s;
+	for(auto i:s)
+{	if(i=='x' && x>0) x--;
+	if(i=='o') x++;
+}	cout<<x<<'\n';
+				
+}
+		
+		
+		
+		
+
+
+int main()
+{
+	fastio
+
+	
+      solve();
+
+		
+
+	
+		
+		
+	
+    return 0;
+}
