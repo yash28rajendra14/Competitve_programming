@@ -76,14 +76,33 @@ def insertElementAtKthPosition(linkedList: Node, element: int, k: int) -> Node:
         temp = temp.next
     return linkedList
 
+def reverseLL(head: Node) -> Node:
+    temp = head 
+    if head is None or head.next is None:
+        return head
+    prevNode = temp
+    temp = temp.next
+    # print(temp)
+    prevNode.next = None
+    while(temp):
+        # print("csds",temp.val)
+        front = temp.next
+        temp.next = prevNode
+        prevNode = temp
+        temp = front
+    return prevNode
+
+
+
 def printLinkedList(linkedList: Node):
     head = linkedList
     while head:
         print(head.val)
         head = head.next 
 
+
 if __name__ == "__main__":
-    arr = []
+    arr = [1,2,3,4,5]
     linkedList = None
     if len(arr) > 1:
         linkedList = createLinkedListFronArray(arr)
@@ -105,8 +124,13 @@ if __name__ == "__main__":
     # head = deleteKthElement(linkedList, k)
     # printLinkedList(head)
 
-    # Insertion element at some position
-    k=4
-    element = 23
-    head = insertElementAtKthPosition(linkedList, element, k)
+    # # Insertion element at some position
+    # k=4
+    # element = 23
+    # head = insertElementAtKthPosition(linkedList, element, k)
+    # printLinkedList(head)
+
+    #reverse a linked list
+    printLinkedList(linkedList)
+    head = reverseLL(linkedList)
     printLinkedList(head)
